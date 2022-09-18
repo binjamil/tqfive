@@ -2,6 +2,7 @@ import { Session } from "@supabase/supabase-js";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import Account from "../components/Account";
 import Auth from "../components/Auth";
 import styles from "../styles/Home.module.css";
 import { supabase } from "../utils/supabaseClient";
@@ -57,7 +58,13 @@ const Home: NextPage = () => {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <>{!session ? <Auth /> : <h1>{session.user.email}</h1>}</>
+          <>
+            {!session ? (
+              <Auth />
+            ) : (
+              <Account key={session.user.id} session={session} />
+            )}
+          </>
         )}
       </main>
     </div>
