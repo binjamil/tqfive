@@ -76,7 +76,7 @@ const Account = ({ session }: AccountProps) => {
         fullname,
         phone,
         address,
-        updated_at: new Date(),
+        updated_at: new Date().toUTCString(),
       };
 
       let { error } = await supabase.from("profiles").upsert(updates);
